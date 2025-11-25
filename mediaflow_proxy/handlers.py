@@ -395,6 +395,10 @@ async def get_segment(
     except Exception as e:
         return handle_exceptions(e)
 
+        mime_type = segment_params.mime_type
+        if mime_type.startswith("image/"):
+            mime_type = "video/mp2t"
+    
     return await process_segment(
         init_content,
         segment_content,
